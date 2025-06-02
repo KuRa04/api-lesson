@@ -7,6 +7,7 @@ import (
 	"strconv"
 )
 
+// APIエンドポイント
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	nStr := r.URL.Query().Get("n")
 	n, err := strconv.Atoi(nStr)
@@ -25,7 +26,17 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", helloHandler)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/index.html")
+	})
+
+	http.HandleFunc("/js/practice.js", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/js/practice.js")
+	})
+
+	// APIエンドポイント
+	http.HandleFunc("/api/hello", helloHandler)
+
 	fmt.Println("Server is running on http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
