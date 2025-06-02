@@ -25,13 +25,24 @@ go run main.go
 
 ### 3. 動作確認
 
-ブラウザやcurlで以下のようにアクセスしてください。
+#### ブラウザでの確認
 
-```
-http://localhost:8080/?n=10
+1. サーバー起動後、ブラウザで [http://localhost:8080/](http://localhost:8080/) にアクセスしてください。
+2. 「配列の数」を入力し、「APIを叩く」ボタンを押すと、コンソール（開発者ツール）にAPIのレスポンスが表示されます。
+
+#### curlでの確認
+
+```sh
+curl "http://localhost:8080/api/hello?n=10"
 ```
 
 10個の文字列が入ったJSON配列が返ります。
+
+### 4. ファイル構成
+
+- `main.go` : GoのAPIサーバー本体
+- `static/index.html` : ブラウザ用のフロントエンド
+- `static/js/practice.js` : APIを呼び出すJavaScript
 
 ## 補足
 
